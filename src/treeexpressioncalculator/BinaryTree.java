@@ -74,7 +74,7 @@ public class BinaryTree {
     * @param v the Visitor to be used to visit each node in the traversal
     */
    public void postorder(Visitor v) {
-       postorder(root, v);
+       postorder(root, v);  //call helper function with root as argument
    }
    
    /**
@@ -83,9 +83,9 @@ public class BinaryTree {
     * @param v the Visitor to be used to visit each node in the traversal 
     */
    private void postorder(Node n, Visitor v) {
-       if (n == null) {return;}
-       postorder(n.left, v);
-       postorder(n.right, v);
-       v.visit(n.data);
+       if (n == null) {return;}     //have reached a leaf
+       postorder(n.left, v);        //do postorder traversal on left subtree
+       postorder(n.right, v);       //do postorder traversal on right subtree
+       v.visit(n.data);             //visit the data at the current node
    }
 }

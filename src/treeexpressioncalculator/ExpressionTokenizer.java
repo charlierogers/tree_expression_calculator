@@ -30,6 +30,7 @@ public class ExpressionTokenizer {
       @return the next token or null if there are no more tokens
    */
    public String peekToken() {
+      //don't go past length of input string
       if (start >= input.length()) { return null; }
       else { return input.substring(start, end); }
    }
@@ -39,11 +40,14 @@ public class ExpressionTokenizer {
       @return the next token or null if there are no more tokens
    */
    public String nextToken() {
-      String r = peekToken();
-      start = end;
-      if (start >= input.length()) { return r; }
+      String r = peekToken();   //gets the next token
+      start = end;              //move start index to following token
+      //don't go past length of input string
+      if (start >= input.length()) { return r; }    
       if (Character.isDigit(input.charAt(start))) {
-         end = start + 1;
+         end = start + 1;       //move end index to following token
+         //keep moving end index forward as long as there is a numeric character
+         //to allow tokenizer to handle multi-digit numbers
          while (end < input.length() 
                && Character.isDigit(input.charAt(end))) {
             end++;
